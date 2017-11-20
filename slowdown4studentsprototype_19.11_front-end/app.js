@@ -26,11 +26,14 @@ var index = require('./routes/index_routes'); // index catchs document index_rou
 var movies = require('./routes/movie_routes'); // movies catch document movie_routes.
 
 
-//front-end
+//frontend
 //<!-- https://www.youtube.com/watch?v=1srD3Mdvf50 -->, 18.11.2017
 //$npm install handlebars
-var hbs = require('express-handlebars');
-app.engine('hbs', hbs({extname: 'hbs', defaultLayout: 'layout', layoutDir: __dirname + '/views/layouts/'}));
+app.engine('hbs', exphbs({extname: 'hbs', defaultLayout: 'layout', layoutDir: __dirname + '/views/layouts/'}));
+
+//frontend:register partial template
+var hbs = require('hbs');
+hbs.registerPartials(__dirname + '/views/partials');
 
 // Enables to connect localhost on port 3000 to the application.
 app.listen(3000, function(){
