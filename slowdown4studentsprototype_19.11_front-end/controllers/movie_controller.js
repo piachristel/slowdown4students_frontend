@@ -1,47 +1,38 @@
-var db = require('../db'); // Enables access to the database.
-var movies // Stores movie activites.
+var movieModel = require('../models/movie.model');
 
-// Exports makes index method accessible for other files, e.g. movie_routes.js in the route folder.
-// Lists all available movie activities. Renders the movies.hbs view.
-exports.index = function(req, res){
-    db.query("SELECT name, category, place, date FROM movie", function(error, rows, fields) {
-        if (error) {
-            console.log('Error in query in movie retrieval');
+exports.get = function(req, res) {
+    movieModel.find({}, function(err, movie) {
+        if (err) {
+            console.log('Cant retrieve movie. Please try again');
         }
-        else{
-            if(rows.length > 0){
-                movies = rows;
-            }
-            else{
-                movies = null;
-            }
-            res.render('movies', {movies: movies});
-        }       
+        else {
+            console.log('Data: ' + movie);
+            res.render('movie', {movies: movie});
+        }
+
     });
 };
 
-// Renderes add_movie.hbs, which is a form for posting a new movie activity.
-exports.add = function(req, res) {
-    res.render('create_movie');
-};
+exports.create = function(req, res) {
+    res.render('addMovie', {title:'Add Movie'});
+}; 
 
-// Saves the post of the user and redirects to the list of all movies.
-exports.save = function(req, res) {   
-    var input = JSON.parse(JSON.stringify(req.body));
-    var data = { 
-        title: input.title,
-        name: input.name,
-        category: input.category,
-        place: input.place,
-        date: input.date    
 
-    };
-    var query = db.query("INSERT INTO movie set ? ",data, function(err, rows){
-            if (err){
-              console.log("Error inserting : %s ",err );
-            }
-            else{
-                res.redirect('/movies');
-            }
-        });    
+exports.save = function(req, res) {
+    var movie = new movieModel();
+    movie.name = req.body.name;
+    movie.category = req.body.category;
+    movie.place = req.body.place;
+
+    movie.save(function(err) {
+        if (err) {
+            console.log('Movie not inserted in DB');
+            throw err;
+        }
+        else {
+            console.log('Movie inserted in DB successfully');
+            res.redirect('/')
+        }
+      
+      });
 };

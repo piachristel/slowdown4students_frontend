@@ -20,10 +20,11 @@ var hbs = exphbs.create({
 });
 
 var path = require('path'); //Mainly used to join strings.
-var db = require('./db'); // Getting access to db file.
 var bodyParser = require('body-parser') // For parsing the input of the user.
 var index = require('./routes/index_routes'); // index catchs document index_routes.
 var movies = require('./routes/movie_routes'); // movies catch document movie_routes.
+var calendar = require('./routes/calendar_routes');
+var mongo = require('./mongodb');
 
 
 //frontend
@@ -34,11 +35,6 @@ app.engine('hbs', exphbs({extname: 'hbs', defaultLayout: 'layout', layoutDir: __
 //frontend:register partial template
 var hbs = require('hbs');
 hbs.registerPartials(__dirname + '/views/partials');
-
-// Enables to connect localhost on port 3000 to the application.
-app.listen(3000, function(){
-  console.log('Server started on port 3000...')
-});
 
 // For parsing the input of the user.
 app.use(bodyParser.json());
@@ -55,7 +51,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 //frontend define routes so that they do not need to be hardcoded.
 ////https://www.npmjs.com/package/express-named-routes, 19.11.2017
 app.defineRoute('homepage', '/');
+app.defineRoute('calendar', '/calendar');
 app.use('/', index);
 app.use('/movies', movies);
+app.use('/calendar', calendar);
 
-
+// Enables to connect localhost on port 3000 to the application.
+app.listen(3000, function(){
+  console.log('Server started on port 3000...')
+});
