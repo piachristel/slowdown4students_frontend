@@ -1,3 +1,4 @@
+<!-->
 // ONE METHODE 
 // used to load data into the calendar
 // TODO: put it in app.js or correct location
@@ -17,7 +18,7 @@ app.get('/data', function(req, res){
     });
 });
 */
-
+<-->
 
 
 /***************************OTHER METHOD WITH FULLCALENDAR*********************************************/
@@ -32,16 +33,26 @@ https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/fullcalendar.min.css
 https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/fullcalendar.print.css 
 
 
-//how to download stylesheet? 
-//CND for jquery and CDN for moment to add ! 
-
 <link rel='stylesheet' href='fullcalendar/fullcalendar.css' />
 <script src='lib/jquery.min.js'></script>
 <script src='lib/moment.min.js'></script>
 <script src='fullcalendar/fullcalendar.js'></script>
 
+
+//js code to initialize the calendar
+<script> 
+    $(document).ready(function() {
+       $('#calendar').fullCalendar({
+         // options and callbacks here
+       })
+    });    
+</script>
   </head>
   
   <body>
+  
+  <!-- CALENDAR -->
+    <div id='calendar'></div>
+    
   </body>
 
