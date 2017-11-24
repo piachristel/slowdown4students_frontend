@@ -25,12 +25,12 @@ app.get('/data', function(req, res){
 
 <!DOCTYPE html>
 <html lang="en">
-	<head>
+    <head>
   
-  //cdn for fullcalendar, beware of delay if new release
-https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/fullcalendar.min.js
-https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/fullcalendar.min.css
-https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/fullcalendar.print.css 
+  <!--cdn for fullcalendar, beware of delay if new release-->
+<script src = 'https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/fullcalendar.min.js'></script>
+<script src = 'https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/fullcalendar.min.css'></script>
+<script src = 'https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/fullcalendar.print.css'></script> 
 
 
 <link rel='stylesheet' href='fullcalendar/fullcalendar.css' />
@@ -39,11 +39,11 @@ https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/fullcalendar.print.css
 <script src='fullcalendar/fullcalendar.js'></script>
 
 
-//js code to initialize the calendar
+<!--js code to initialize the calendar-->
 <script> 
     $(document).ready(function() {
        $('#calendar').fullCalendar({
-         // options and callbacks here
+         <!-- options and callbacks here-->
        })
     });    
 </script>
