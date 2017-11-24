@@ -1,0 +1,47 @@
+// ONE METHODE 
+// used to load data into the calendar
+// TODO: put it in app.js or correct location
+/* here we choose all the records from the database and send them to the client side as JSON structure.
+Here example with dhtmlxScheduler -> need to set the id because expects the records to be stored in ojb.id and mongodb keeps
+it in ojb._id. */
+
+/*
+app.get('/data', function(req, res){
+    db.event.find().toArray(function(err, data){
+        //set id property for all records
+        for (var i = 0; i < data.length; i++)
+            data[i].id = data[i]._id;
+
+        //output response
+        res.send(data);
+    });
+});
+*/
+
+
+
+/***************************OTHER METHOD WITH FULLCALENDAR*********************************************/
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+  
+  //cdn for fullcalendar, beware of delay if new release
+https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/fullcalendar.min.js
+https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/fullcalendar.min.css
+https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/fullcalendar.print.css 
+
+
+//how to download stylesheet? 
+//CND for jquery and CDN for moment to add ! 
+
+<link rel='stylesheet' href='fullcalendar/fullcalendar.css' />
+<script src='lib/jquery.min.js'></script>
+<script src='lib/moment.min.js'></script>
+<script src='fullcalendar/fullcalendar.js'></script>
+
+  </head>
+  
+  <body>
+  </body>
+
