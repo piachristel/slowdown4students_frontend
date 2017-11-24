@@ -9,6 +9,14 @@ var app = express(); // Calls the express function express(),
 var namedRoutes = require('express-named-routes');
 namedRoutes.extend(app);
 
+//for flash error messages
+var flash = require('connect-flash');
+app.use(flash());
+
+//for sessions
+var session = require('express-session');
+app.use(session({ secret: 'example' }));
+
 //Frontend: Helper function for Handlbar. So that url do not need to be hardcoded.
 //https://www.npmjs.com/package/express-handlebars#helpers
 var exphbs  = require('express-handlebars');
@@ -52,6 +60,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 ////https://www.npmjs.com/package/express-named-routes, 19.11.2017
 app.defineRoute('homepage', '/');
 app.defineRoute('calendar', '/calendar');
+app.defineRoute('login', '/login');
 app.use('/', index);
 app.use('/movies', movies);
 app.use('/calendar', calendar);
@@ -60,3 +69,23 @@ app.use('/calendar', calendar);
 app.listen(3000, function(){
   console.log('Server started on port 3000...')
 });
+
+var schedule = require('node-schedule');
+
+popularMovies = {};
+
+j = schedule.scheduleJob('5 * * * * *', function(){
+  console.log('API request for most popular movies!');
+  var request = require('request');
+  request('https://api.themoviedb.org/3/movie/popular?api_key=6d5fbbe716371a300e974cd7e7d8db49&language=en-UK&page=1&region=Switzerland&sort_by=popularity.desc?', function (error, response, body) {
+   console.log('error:', error); // Print the error if one occurred and handle it
+   console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+   //res.send(body)
+   var jsondata = JSON.parse(body)
+   popularMovies = {
+     first: jsondata.results[0],
+     second: jsondata.results[1],
+     third: jsondata.results[2]
+   }
+   });
+ });

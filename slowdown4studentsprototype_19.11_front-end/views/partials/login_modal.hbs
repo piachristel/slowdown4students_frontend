@@ -7,7 +7,7 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Welcome!</h4>
       </div>
-      <form id="login" method="" action="">
+      <form id="login" method="post" action="/login/">
         <div class="modal-body">
           <div class="form-group">
             <label>Username:</label>
@@ -15,7 +15,7 @@
           </div>
           <div class="form-group">
             <label>Password:</label>
-            <input type="password" class="form-control">
+            <input type="password" name="password" class="form-control">
           </div>
           <div class="">
 				    <p>New here? <a href="#"  role="button" data-toggle="modal" data-target="#registration-modal" data-dismiss="modal">Create a new account.</a></p>

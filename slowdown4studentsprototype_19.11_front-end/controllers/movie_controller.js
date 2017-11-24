@@ -7,7 +7,7 @@ exports.get = function(req, res) {
         }
         else {
             console.log('Data: ' + movie);
-            res.render('movie', {movies: movie});
+            res.render('movie', {movies: movie, object: popularMovies});
         }
 
     });

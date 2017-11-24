@@ -3,6 +3,8 @@ var router = express.Router();
 
 router.get('/', function(req, res, next) {
     if (!req.session || !req.session.authenticated) {
+        console.log(req.session);
+        console.log(req.session.authenticated);
         res.render('unauthorised', { status: 403 });
 	    return;
     }
