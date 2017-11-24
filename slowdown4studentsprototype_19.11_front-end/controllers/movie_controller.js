@@ -31,7 +31,7 @@ exports.save = function(req, res) {
         }
         else {
             console.log('Movie inserted in DB successfully');
-            res.redirect('/')
+            res.redirect(app.lookupRoute('homepage'))
         }
       
       });
